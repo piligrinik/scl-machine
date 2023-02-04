@@ -90,28 +90,23 @@ LogicFormulaResult TemplateExpressionNode::generate(Replacements & replacements)
     if (result.isGenerated)
       break;
 
-    std::vector<ScTemplateSearchResultItem> searchResult =
-        templateSearcher->searchTemplate(formulaTemplate, scTemplateParams);
-    if (searchResult.empty())
+    ScTemplate generatedTemplate;
+    context->HelperBuildTemplate(generatedTemplate, formulaTemplate, scTemplateParams);
+
+    ScTemplateGenResult generationResult;
+    ScTemplate::Result const & genTemplate = context->HelperGenTemplate(generatedTemplate, generationResult);
+    if (genTemplate)
     {
-      ScTemplate generatedTemplate;
-      context->HelperBuildTemplate(generatedTemplate, formulaTemplate, scTemplateParams);
+      result.isGenerated = true;
+      result.value = true;
+      result.replacements = replacements;
+    }
 
-      ScTemplateGenResult generationResult;
-      ScTemplate::Result const & genTemplate = context->HelperGenTemplate(generatedTemplate, generationResult);
-      if (genTemplate)
-      {
-        result.isGenerated = true;
-        result.value = true;
-        result.replacements = replacements;
-      }
-
-      SC_LOG_DEBUG("Atomic logical formula " + context->HelperGetSystemIdtf(formulaTemplate) + " is generated");
-      for (size_t i = 0; i < generationResult.Size(); ++i)
-      {
-        templateSearcher->addParamIfNotPresent(generationResult[i]);
-        context->CreateEdge(ScType::EdgeAccessConstPosPerm, outputStructure, generationResult[i]);
-      }
+    SC_LOG_DEBUG("Atomic logical formula " + context->HelperGetSystemIdtf(formulaTemplate) + " is generated");
+    for (size_t i = 0; i < generationResult.Size(); ++i)
+    {
+      templateSearcher->addParamIfNotPresent(generationResult[i]);
+      context->CreateEdge(ScType::EdgeAccessConstPosPerm, outputStructure, generationResult[i]);
     }
   }
   return result;
