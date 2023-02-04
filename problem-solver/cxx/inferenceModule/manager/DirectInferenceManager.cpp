@@ -52,7 +52,6 @@ ScAddr DirectInferenceManager::applyInference(
     SC_THROW_EXCEPTION(utils::ExceptionItemNotFound, "No rule sets found.");
   }
 
-  ScAddrVector checkedFormulas;
   ScAddrQueue uncheckedFormulas;
 
   ScAddr formula;
@@ -68,6 +67,7 @@ ScAddr DirectInferenceManager::applyInference(
     while (!uncheckedFormulas.empty())
     {
       formula = uncheckedFormulas.front();
+      uncheckedFormulas.pop();
       SC_LOG_DEBUG("Trying to generate by formula: " + ms_context->HelperGetSystemIdtf(formula));
       isGenerated = useFormula(formula, argumentVector, outputStructure);
       SC_LOG_DEBUG(std::string("Logical formula is ") + (isGenerated ? "generated" : "not generated"));
@@ -80,19 +80,7 @@ ScAddr DirectInferenceManager::applyInference(
           SC_LOG_DEBUG("Target achieved");
           break;
         }
-        else
-        {
-          ContainersUtils::addToQueue(checkedFormulas, uncheckedFormulas);
-          formulasQueueIndex = 0;
-          checkedFormulas.clear();
-        }
       }
-      else
-      {
-        checkedFormulas.push_back(formula);
-      }
-
-      uncheckedFormulas.pop();
     }
   }
 
