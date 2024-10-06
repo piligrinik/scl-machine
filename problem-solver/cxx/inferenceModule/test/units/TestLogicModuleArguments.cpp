@@ -44,7 +44,7 @@ void shutdown()
 // a -> b
 TEST_F(InferenceLogicTest, AllArgumentsValid)
 {
-  ScMemoryContext context(sc_access_lvl_make_min, "successful_inference");
+  ScMemoryContext context;
 
   loader.loadScsFile(context, TEST_FILES_DIR_PATH + "logicModuleArgumentsTest.scs");
   initialize();
@@ -89,7 +89,7 @@ TEST_F(InferenceLogicTest, AllArgumentsValid)
 // Input structure is invalid
 TEST_F(InferenceLogicTest, InvalidArguments)
 {
-  ScMemoryContext context(sc_access_lvl_make_min, "successful_inference");
+  ScMemoryContext context;
 
   loader.loadScsFile(context, TEST_FILES_DIR_PATH + "logicModuleArgumentsTest.scs");
   initialize();
@@ -116,7 +116,7 @@ TEST_F(InferenceLogicTest, InvalidArguments)
 // Input structure is an empty set
 TEST_F(InferenceLogicTest, EmptyInputStructure)
 {
-  ScMemoryContext context(sc_access_lvl_make_min, "successful_inference");
+  ScMemoryContext context;
 
   loader.loadScsFile(context, TEST_FILES_DIR_PATH + "logicModuleArgumentsTest.scs");
   initialize();
@@ -142,7 +142,7 @@ TEST_F(InferenceLogicTest, EmptyInputStructure)
 // Rule set is an empty set, target is not achieved
 TEST_F(InferenceLogicTest, EmptyRuleSet)
 {
-  ScMemoryContext context(sc_access_lvl_make_min, "successful_inference");
+  ScMemoryContext context;
 
   loader.loadScsFile(context, TEST_FILES_DIR_PATH + "logicModuleArgumentsTest.scs");
   initialize();
@@ -163,7 +163,7 @@ TEST_F(InferenceLogicTest, EmptyRuleSet)
 // Rule set queue is an empty set, target is not achieved
 TEST_F(InferenceLogicTest, EmptyRuleSetQueue)
 {
-  ScMemoryContext context(sc_access_lvl_make_min, "successful_inference");
+  ScMemoryContext context;
 
   loader.loadScsFile(context, TEST_FILES_DIR_PATH + "logicModuleArgumentsTest.scs");
   initialize();

@@ -32,14 +32,14 @@ public:
   }
 
   void setOutputStructureElements(
-      std::unordered_set<ScAddr, ScAddrHashFunc<::size_t>> const & otherOutputStructureElements)
+      std::unordered_set<ScAddr, ScAddrHashFunc<sc_uint64>> const & otherOutputStructureElements)
   {
     outputStructureElements = otherOutputStructureElements;
   }
 
 protected:
   ScAddrVector argumentVector;
-  std::unordered_set<ScAddr, ScAddrHashFunc<::size_t>> outputStructureElements;
+  std::unordered_set<ScAddr, ScAddrHashFunc<sc_uint64>> outputStructureElements;
 };
 
 class OperatorLogicExpressionNode : public LogicExpressionNode

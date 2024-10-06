@@ -21,7 +21,7 @@ class DirectInferenceAgent : public ScAgent
   SC_GENERATED_BODY()
 
 private:
-  static bool checkActionClass(ScAddr const & actionNode);
+  bool checkActionClass(ScAddr const & actionNode);
 };
 
 }  // namespace inference

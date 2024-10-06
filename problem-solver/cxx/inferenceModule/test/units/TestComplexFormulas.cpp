@@ -44,7 +44,7 @@ void shutdown()
 // (a -> b) -> c
 TEST_F(InferenceComplexFormulasTest, TrueNestedImplicationFormula)
 {
-  ScMemoryContext context(sc_access_lvl_make_min, "successful_inference");
+  ScMemoryContext context;
 
   loader.loadScsFile(context, TEST_FILES_DIR_PATH + "trueNestedImplicationFormula.scs");
   initialize();
@@ -88,7 +88,7 @@ TEST_F(InferenceComplexFormulasTest, TrueNestedImplicationFormula)
 // (a || b) -> c
 TEST_F(InferenceComplexFormulasTest, TrueDisjunctionImplicationFormula)
 {
-  ScMemoryContext context(sc_access_lvl_make_min, "successful_inference");
+  ScMemoryContext context;
 
   loader.loadScsFile(context, TEST_FILES_DIR_PATH + "disjunctionImplicationTest.scs");
   initialize();
@@ -131,7 +131,7 @@ TEST_F(InferenceComplexFormulasTest, TrueDisjunctionImplicationFormula)
 // (a && b) -> c
 TEST_F(InferenceComplexFormulasTest, TrueConjunctionImplicationFormula)
 {
-  ScMemoryContext context(sc_access_lvl_make_min, "successful_inference");
+  ScMemoryContext context;
 
   loader.loadScsFile(context, TEST_FILES_DIR_PATH + "conjunctionImplicationTest.scs");
   initialize();
@@ -177,7 +177,7 @@ TEST_F(InferenceComplexFormulasTest, TrueConjunctionImplicationFormula)
 // (!a) -> b
 TEST_F(InferenceComplexFormulasTest, DISABLED_TrueNegationImplicationLogicRule)
 {
-  ScMemoryContext context(sc_access_lvl_make_min, "successful_inference");
+  ScMemoryContext context;
 
   loader.loadScsFile(context, TEST_FILES_DIR_PATH + "trueNegationImplicationRuleTest.scs");
   initialize();
@@ -222,7 +222,7 @@ TEST_F(InferenceComplexFormulasTest, DISABLED_TrueNegationImplicationLogicRule)
 // ((a || b) && (!c)) -> d
 TEST_F(InferenceComplexFormulasTest, DISABLED_TrueComplexLogicRule)
 {
-  ScMemoryContext context(sc_access_lvl_make_min, "successful_inference");
+  ScMemoryContext context;
 
   loader.loadScsFile(context, TEST_FILES_DIR_PATH + "inferenceLogicTrueComplexRuleTest.scs");
   initialize();
@@ -266,7 +266,7 @@ TEST_F(InferenceComplexFormulasTest, DISABLED_TrueComplexLogicRule)
 // ((a || b) && (!c)) -> d
 TEST_F(InferenceComplexFormulasTest, FalseLogicRule)
 {
-  ScMemoryContext context(sc_access_lvl_make_min, "unsuccessful_inference");
+  ScMemoryContext context;
 
   loader.loadScsFile(context, TEST_FILES_DIR_PATH + "inferenceLogicFalseComplexRuleTest.scs");
   initialize();
@@ -284,7 +284,7 @@ TEST_F(InferenceComplexFormulasTest, FalseLogicRule)
 
 TEST_F(InferenceComplexFormulasTest, EquivalencesNested)
 {
-  ScMemoryContext context(sc_access_lvl_make_min, "testSeveralNestedEquivalences");
+  ScMemoryContext context;
 
   string const & name = TEST_FILES_DIR_PATH + "inferenceTestEquivalences.scs";
   struct stat buffer;
